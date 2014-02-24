@@ -1,6 +1,9 @@
-muhChan is a 4chan-esque clone using the flask python microframework and bootstrap
+muhChan
+=======
+muhChan is a 4chan-esque clone using the flask python microframework and twitter bootstrap.
 
-to-do
+To-Do
+-----
 -handle POST for new threads
 -add columns to database (pictures?)
 -single thread view method
