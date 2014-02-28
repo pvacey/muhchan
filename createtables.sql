@@ -14,6 +14,7 @@ CREATE TABLE post
 	id		integer	CONSTRAINT p_id_pk ,
 	threadID		CONSTRAINT p_threadID_fk REFERENCES thread(id)
 					ON DELETE CASCADE,
+	timestamp	varchar(40),
 	content	varchar(160) CONSTRAINT p_content_nn NOT NULL,
 	PRIMARY KEY(id,threadID)
 );
