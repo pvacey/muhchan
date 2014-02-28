@@ -11,10 +11,11 @@ CREATE TABLE thread
 DROP TABLE post;
 CREATE TABLE post
 (
-	id		integer	CONSTRAINT p_id_pk PRIMARY KEY,
+	id		integer	CONSTRAINT p_id_pk ,
 	threadID		CONSTRAINT p_threadID_fk REFERENCES thread(id)
 					ON DELETE CASCADE,
-	content	varchar(160) CONSTRAINT p_content_nn NOT NULL
+	content	varchar(160) CONSTRAINT p_content_nn NOT NULL,
+	PRIMARY KEY(id,threadID)
 );
 
 
@@ -24,3 +25,5 @@ insert into thread(id,title)
 
 insert into post(id,threadID,content)
 	values (1,1,'original post goes here');
+insert into post(id,threadID,content)
+	values (2,1,'this should not be visible');
