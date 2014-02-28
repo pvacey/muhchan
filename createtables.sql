@@ -20,21 +20,7 @@ CREATE TABLE post
 
 --insert some stuff
 insert into thread(id,title)
-	values (1,'first title');
-insert into thread(id,title)
-	values (2,'so i heard u liek dogs');
-insert into thread(id,title)
-	values (3,'cats are ghey tho');
+	values (1,'This was here first');
 
 insert into post(id,threadID,content)
-	values (11231,1,'test the post?');
-insert into post(id,threadID,content)
-	values (11221,1,'different words');
-insert into post(id,threadID,content)
-	values (31431,2,'this should be different tew');	
-insert into post(id,threadID,content)
-	values (11434,3,'oh wow such posts');
-insert into post(id,threadID,content)
-	values (31421,2,'so many kinds of posts available here');
-insert into thread (id, title)
-	values (4, 'kayt is sooo pretyy');
+	values (1,1,'original post goes here');
