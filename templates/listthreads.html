@@ -2,11 +2,27 @@
 {% block content %}
     <div class="chan"> 
     <div class="container">
+    {%for thread in threads%}
+      <div class="row">
+        <h1>{{thread[1]}}</h1>
+          {%for post in posts%}
+            {%if post[1] == thread[0]%}
+	      {% if post[4] %}
+	        <p>{{post[4] |oembed(urlize_all=False) }}</p>
+	      {%endif%}
+	      <p> {{post[3]}} </p>
+	      <p> {{post[2]}} </p>
+	      <hr class="featurette-divider">
+            {%endif%}
+          {%endfor%}
+      </div>
+    {%endfor%}
+    
 
     <div class="row">
     <div class="col-md-8">
     <!--put dat form here-->
-    <form action="/" method="post">
+    <form action="/" method="post"> 
     <!-- <form role="form" method="POST" action="" enctype="multipart/form-data" -->
       <div class="form-group">
         <label for="subjectLine">Subject</label>
@@ -29,21 +45,6 @@
     </div>
     </div>
 
-    {%for thread in threads%}
-      <div class="row">
-        <h1>{{thread[1]}}</h1>
-          {%for post in posts%}
-            {%if post[1] == thread[0]%}
-	      {% if post[4] %}
-	        <p>{{post[4] |oembed(urlize_all=False) }}</p>
-	      {%endif%}
-	      <p> {{post[3]}} </p>
-	      <p> {{post[2]}} </p>
-	      <hr class="featurette-divider">
-            {%endif%}
-          {%endfor%}
-      </div>
-    {%endfor%}
     </div>
     </div>
 {% endblock %}
