@@ -17,8 +17,8 @@ def index():
 	#get list of all threads		
 	cur.execute('SELECT * FROM thread;')
 	threads = cur.fetchall()
-	#get  posts belonging to each thread
-	cur.execute('SELECT * FROM post;')
+	#get original post belonging to each thread
+	cur.execute('SELECT * FROM post WHERE id = 1 ;')
 	posts = cur.fetchall()
 
 
@@ -29,13 +29,17 @@ def index():
 		subject = request.form['subjectLine']
 		comment = request.form['comment']
 		
-		#get highest thread post number
+		#get highest threadID
 		cur.execute('SELECT MAX(id) FROM thread;')
 		#current post is 1 higher
-		postnum = cur.fetchone()[0] + 1
-		item = [postnum, subject]
+		threadID = cur.fetchone()[0] + 1
+		thread = [threadID, subject]
 		#adds thread to the database by passing it the item
-		cur.execute('insert into thread values(?,?)',item)
+		cur.execute('insert into thread values(?,?)',thread)
+
+		#create original post
+		post = [1, threadID, comment] 
+		cur.execute('insert into post values(?,?,?)',post)
 
 		#save the changes
 		con.commit()
