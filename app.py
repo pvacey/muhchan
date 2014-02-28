@@ -21,8 +21,6 @@ def index():
 	cur.execute('SELECT * FROM post WHERE id = 1 ;')
 	posts = cur.fetchall()
 
-
-	#cur = connect_db()
 	if request.method == 'POST':
 		
 		#grab form data
@@ -47,12 +45,25 @@ def index():
 		
 		return redirect(url_for('index'))
 
-		#return render_template('listthreads.html', threads=threads, posts=posts)	
-
 	con.close()
 	
-	return render_template('listthreads.html', threads=threads, posts=posts)	
+	return render_template('listthreads.html', threads=reversed(threads), posts=posts)	
 
+@app.route('/thread/<threadID>',methods = ['GET', 'POST'])
+def viewThread(threadID):
+	db_obj = connect_db()
+	cur = db_obj[0]
+	con = db_obj[1]	
+
+	#get information about this thread
+	cur.execute('SELECT * FROM thread WHERE id ;')
+	threadInfo = cur.fetchall()
+	#get original post belonging to each thread
+	cur.execute('SELECT * FROM post WHERE id = 1 ;')
+	posts = cur.fetchall()
+
+
+	return render_template('viewThread.html')
 #connect to database, return cursor and connection
 def connect_db():
 	con = None
