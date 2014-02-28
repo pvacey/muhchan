@@ -8,3 +8,6 @@ h1 {
   color: #99FF99;
   padding: 10px
  }
+hr {
+  border-top: 5px solid #000;
+}
