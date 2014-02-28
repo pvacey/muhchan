@@ -1,5 +1,6 @@
 #!flask/bin/python
 from flask import Flask, render_template, request, url_for, redirect
+from time import strftime
 import sqlite3 as lite
 import sys
 
@@ -36,8 +37,8 @@ def index():
 		cur.execute('insert into thread values(?,?)',thread)
 
 		#create original post
-		post = [1, threadID, comment] 
-		cur.execute('insert into post values(?,?,?)',post)
+		post = [1, threadID, strftime("%I:%M %B %d, %Y"), comment] 
+		cur.execute('insert into post values(?,?,?,?)',post)
 
 		#save the changes
 		con.commit()
