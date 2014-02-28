@@ -11,7 +11,11 @@
       <div class="form-group">
         <label for="subjectLine">Subject</label>
         <input type="text" class="form-control" name="subjectLine">
-      </div>
+	</div>
+      <div class="form-group">
+        <label for="embed">Link to Embed (optional)</label>
+        <input type="text" class="form-control" name="embed">
+	</div>
       <div class="form-group">
         <label for="comment">Comment</label>
         <textarea class="form-control" rows="3" name="comment"></textarea>
@@ -27,10 +31,14 @@
 
     {%for thread in threads%}
       <div class="row">
-        <h1>#{{thread[0]}} Title: {{thread[1]}}</h1>
+        <h1>{{thread[1]}}</h1>
           {%for post in posts%}
             {%if post[1] == thread[0]%}
-	      <dd>- {{post[2]}} </dd>
+	      {% if post[4] %}
+	        <p>{{post[4] |oembed(urlize_all=False) }}</p>
+	      {%endif%}
+	      <p> {{post[3]}} </p>
+	      <p> {{post[2]}} </p>
             {%endif%}
           {%endfor%}
       </div>

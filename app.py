@@ -1,6 +1,9 @@
 #!flask/bin/python
 from flask import Flask, render_template, request, url_for, redirect
 from time import strftime
+import micawber
+from micawber.providers import bootstrap_basic
+from micawber.contrib.mcflask import add_oembed_filters
 import sqlite3 as lite
 import sys
 
@@ -9,6 +12,9 @@ app = Flask(__name__)
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
+	#import shit
+	providers = micawber.bootstrap_basic()
+	add_oembed_filters(app, providers)
 	#connect to db
 	db_obj = connect_db()
 	#assign cursor and connection to variables
@@ -27,6 +33,7 @@ def index():
 		#grab form data
 		subject = request.form['subjectLine']
 		comment = request.form['comment']
+		embed = request.form['embed']
 		
 		#get highest threadID
 		cur.execute('SELECT MAX(id) FROM thread;')
@@ -37,8 +44,8 @@ def index():
 		cur.execute('insert into thread values(?,?)',thread)
 
 		#create original post
-		post = [1, threadID, strftime("%I:%M %B %d, %Y"), comment] 
-		cur.execute('insert into post values(?,?,?,?)',post)
+		post = [1, threadID, strftime("%I:%M %B %d, %Y"), comment, embed] 
+		cur.execute('insert into post values(?,?,?,?,?)',post)
 
 		#save the changes
 		con.commit()
@@ -48,7 +55,7 @@ def index():
 
 	con.close()
 	
-	return render_template('listthreads.html', threads=reversed(threads), posts=posts)	
+	return render_template('listthreads.html', threads=reversed(threads), posts=posts) 
 
 @app.route('/thread/<threadID>',methods = ['GET', 'POST'])
 def viewThread(threadID):

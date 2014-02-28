@@ -16,6 +16,7 @@ CREATE TABLE post
 					ON DELETE CASCADE,
 	timestamp	varchar(40),
 	content	varchar(160) CONSTRAINT p_content_nn NOT NULL,
+	embed		varchar(1024),
 	PRIMARY KEY(id,threadID)
 );
 
