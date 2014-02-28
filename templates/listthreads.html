@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="chan"> 
+    <div class="container">
+
+    <div class="row">
+    <div class="col-md-8">
+    <!--put dat form here-->
+    <form action="/" method="post">
+    <!-- <form role="form" method="POST" action="" enctype="multipart/form-data" -->
+      <div class="form-group">
+        <label for="subjectLine">Subject</label>
+        <input type="text" class="form-control" name="subjectLine">
+      </div>
+      <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea class="form-control" rows="3" name="comment"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="inputImage">Image input</label>
+        <input type="file" name="inputFile">
+      </div>
+    <button type="submit" class="btn btn-default" action="/">Submit</button>
+    </form>
+    </div>
+    </div>
+
+    {%for thread in threads%}
+      <div class="row">
+        <h1>#{{thread[0]}} Title: {{thread[1]}}</h1>
+          {%for post in posts%}
+            {%if post[1] == thread[0]%}
+	      <dd>- {{post[2]}} </dd>
+            {%endif%}
+          {%endfor%}
+      </div>
+    {%endfor%}
+    </div>
+    </div>
+{% endblock %}
