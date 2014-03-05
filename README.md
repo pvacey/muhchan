@@ -4,13 +4,9 @@ muhChan is a 4chan-esque clone using the flask python microframework and twitter
 
 To-Do
 -----
-- handle POST for new threads
-  - thread incrementation
-- add columns to database
-  - comment
-  - time/date
-  - name(? perhaps only anoymous for now)
-  - picture/embedded music
+- upload pictures
 - single thread view method
+  - ability to post comments in a thread
 - limit posts shown per thread on main page
 - sexify the html/css
+- IDs for posters... maybe user accounts...
