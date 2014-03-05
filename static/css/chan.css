@@ -1,17 +1,26 @@
 body {
   padding-top: 0px;
   padding-bottom: 20px;
-  background-color: #99FF99
+  background-color: #99FF99;
 }
-h1 {
-  background-color: #000;
+h2 {
   color: #99FF99;
-  padding: 10px
+  background-color: #222;
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif; 
+  font-weight: 500;
  }
 hr {
   border-top: 5px solid #000;
 }
 p {
+  font-family: 'Archivo Narrow', sans-serif;
+  font-weight: 400; 
   margin: 10px;
-  font-size: 18px;
+  font-size: 20px;
 }
+.navbar-inverse .navbar-brand {
+  color: #99FF99;
+  font-family: 'Open Sans', sans-serif;
+}
+

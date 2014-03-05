@@ -4,7 +4,7 @@
     <div class="container">
     {%for thread in threads%}
       <div class="row">
-        <h1>{{thread[1]}}</h1>
+        <h2>{{thread[1]}}</h2>
           {%for post in posts%}
             {%if post[1] == thread[0]%}
 	      {% if post[4] %}
@@ -17,19 +17,17 @@
           {%endfor%}
       </div>
     {%endfor%}
-    
 
     <div class="row">
     <div class="col-md-8">
     <!--put dat form here-->
     <form action="/" method="post"> 
-    <!-- <form role="form" method="POST" action="" enctype="multipart/form-data" -->
       <div class="form-group">
-        <label for="subjectLine">Subject</label>
+        <label for="subjectLine">Title</label>
         <input type="text" class="form-control" name="subjectLine">
 	</div>
       <div class="form-group">
-        <label for="embed">Link to Embed (optional)</label>
+        <label for="embed"> Embed Link</label>
         <input type="text" class="form-control" name="embed">
 	</div>
       <div class="form-group">
