@@ -16,11 +16,18 @@ hr {
 p {
   font-family: 'Archivo Narrow', sans-serif;
   font-weight: 400; 
-  margin: 10px;
+  margin: 6px;
+  margin-left: 20px;
   font-size: 20px;
+}
+dd {
+  text-align:right
 }
 .navbar-inverse .navbar-brand {
   color: #99FF99;
   font-family: 'Open Sans', sans-serif;
 }
-
+.post-divider{
+  .featurette-divider;
+  margin-left: 20px;
+}

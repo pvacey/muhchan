@@ -11,16 +11,19 @@
 	        <p>{{post[4] |oembed(urlize_all=False) }}</p>
 	      {%endif%}
 	      <p> {{post[3]}} </p>
-	      <p> {{post[2]}} </p>
+	      <dd> {{post[2]}} </dd>
 	      <hr class="featurette-divider">
             {%endif%}
           {%endfor%}
       </div>
     {%endfor%}
 
+
     <div class="row">
     <div class="col-md-8">
     <!--put dat form here-->
+
+    <h2>Post New Thread</h2>
     <form action="/" method="post"> 
       <div class="form-group">
         <label for="subjectLine">Title</label>
@@ -33,10 +36,6 @@
       <div class="form-group">
         <label for="comment">Comment</label>
         <textarea class="form-control" rows="3" name="comment"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="inputImage">Image input</label>
-        <input type="file" name="inputFile">
       </div>
     <button type="submit" class="btn btn-default" action="/">Submit</button>
     </form>

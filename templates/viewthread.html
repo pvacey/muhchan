@@ -1,8 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="chan">
+  <div class="chan">
   <div class="container">
-    <h1>hello there</h1>
+    <h2>{{title}}</h2>
+      {%for post in posts%}
+        {% if post[4] %}
+	  <p>{{post[4] |oembed(urlize_all=False) }}</p>
+	{%endif%}
+        <p>{{post[3]}}</p>
+        <dd>{{post[2]}}</dd>
+	<hr class="post-divider">
+      {%endfor%}
+    
+    <div class="row">
+    <div class="col-md-8">
+    <!--put dat form here-->
+    <form method="post">
+      <div class="form-group">
+        <label for="embed"> Embed Link</label>
+        <input type="text" class="form-control" name="embed">
+	</div>
+      <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea class="form-control" rows="3" name="comment"></textarea>
+      </div>
+    <button type="submit" class="btn btn-default" action="/">Submit</button>
+    </form>
+    </div>
+    </div>
+
   </div>
-</div>
+  </div>
 {% endblock %}

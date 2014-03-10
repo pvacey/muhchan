@@ -34,6 +34,9 @@ def index():
 		subject = request.form['subjectLine']
 		comment = request.form['comment']
 		embed = request.form['embed']
+
+		if subject == "" or comment == "" or embed =="":
+			return "need javascript"
 		
 		#get highest threadID
 		cur.execute('SELECT MAX(id) FROM thread;')
@@ -59,19 +62,25 @@ def index():
 
 @app.route('/thread/<threadID>',methods = ['GET', 'POST'])
 def viewThread(threadID):
+	#import shit
+	providers = micawber.bootstrap_basic()
+	add_oembed_filters(app, providers)
+	#database shit
 	db_obj = connect_db()
 	cur = db_obj[0]
 	con = db_obj[1]	
 
 	#get information about this thread
-	cur.execute('SELECT * FROM thread WHERE id ;')
+	cur.execute('SELECT * FROM thread WHERE id ='+threadID+';')
 	threadInfo = cur.fetchall()
+
+	title = threadInfo[0][1]
+
 	#get original post belonging to each thread
-	cur.execute('SELECT * FROM post WHERE id = 1 ;')
+	cur.execute('SELECT * FROM post WHERE threadID ='+threadID+';')
 	posts = cur.fetchall()
 
-
-	return render_template('viewThread.html')
+	return render_template('viewThread.html',title=title, posts=posts) 
 #connect to database, return cursor and connection
 def connect_db():
 	con = None
