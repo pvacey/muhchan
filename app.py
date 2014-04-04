@@ -82,7 +82,7 @@ def viewThread(threadID):
 
 	return render_template('viewThread.html',title=title, posts=posts) 
 
-@app.route('/query', methods=['POST'])
+@app.route('/query', methods=['GET','POST'])
 def query(): #works with curl localhost:5000/query -d "select * from thread;"
 	db_obj = connect_db('data.db')
 	cur = db_obj[0]
