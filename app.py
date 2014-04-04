@@ -82,11 +82,16 @@ def viewThread(threadID):
 
 	return render_template('viewThread.html',title=title, posts=posts) 
 
-@app.route('/db/query')
-def query():
-	connect_db('kevin.db')
-	
-	return
+@app.route('/query', methods=['POST'])
+def query(): #works with curl localhost:5000/query -d "select * from thread;"
+	db_obj = connect_db('data.db')
+	cur = db_obj[0]
+	con = db_obj[1]
+	data = request.stream.read()
+	cur.execute(data)
+	query_response = cur.fetchall()
+	return str(query_response[0]) 
+
 #connect to database, return cursor and connection
 def connect_db(db):
 	con = None
