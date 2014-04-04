@@ -16,7 +16,7 @@ def index():
 	providers = micawber.bootstrap_basic()
 	add_oembed_filters(app, providers)
 	#connect to db
-	db_obj = connect_db()
+	db_obj = connect_db('data.db')
 	#assign cursor and connection to variables
 	cur = db_obj[0]
 	con = db_obj[1]
@@ -66,7 +66,7 @@ def viewThread(threadID):
 	providers = micawber.bootstrap_basic()
 	add_oembed_filters(app, providers)
 	#database shit
-	db_obj = connect_db()
+	db_obj = connect_db('data.db')
 	cur = db_obj[0]
 	con = db_obj[1]	
 
@@ -81,11 +81,17 @@ def viewThread(threadID):
 	posts = cur.fetchall()
 
 	return render_template('viewThread.html',title=title, posts=posts) 
+
+@app.route('/db/query')
+def query():
+	connect_db('kevin.db')
+	
+	return
 #connect to database, return cursor and connection
-def connect_db():
+def connect_db(db):
 	con = None
 	try:
-		con = lite.connect('data.db')
+		con = lite.connect(db)
 		cur = con.cursor()
 		return cur,con
 	except lite.Error, e:
