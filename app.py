@@ -82,14 +82,22 @@ def viewThread(threadID):
 
 	return render_template('viewThread.html',title=title, posts=posts) 
 
+#rename to kevins file
+#change db file owner
 @app.route('/query', methods=['POST'])
 def query(): #works with curl localhost:5000/query -d "select * from thread;"
-	db_obj = connect_db('data.db')
+	#connect to db
+	db_obj = connect_db('kevin.db') 
 	cur = db_obj[0]
 	con = db_obj[1]
 	data = request.stream.read()
+
+	#PASS POST DATA TO DATABASE
 	cur.execute(data)
+
 	query_response = cur.fetchall()
+	#CHANGE THE RESPONSE TO DESIRED FORMAT
+
 	return str(query_response[0]) 
 
 #connect to database, return cursor and connection
