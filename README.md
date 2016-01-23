@@ -1,6 +1,6 @@
 muhChan
 =======
-muhChan is a 4chan-esque clone using the flask python microframework and twitter bootstrap.
+muhChan is a blog-ish site using the flask python microframework and twitter bootstrap.
 
 To-Do
 -----
